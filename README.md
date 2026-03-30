@@ -59,7 +59,29 @@ Join our community of developers creating universal apps.
   - Handle Analytics & Experimentation
 - CodeRabbit
   - Handle Code Qualit y
+- Nativewind
+  - Styling
 
 # Build Commands
 
+## Starting Point
+
 - npx create-expo-app@latest --template default@sdk-54 ./
+- npm run reset-project
+- npx expo start
+
+## Nativewind
+
+- npx expo install nativewind@preview react-native-css react-native-reanimated react-native-safe-area-context
+- npx expo install --dev tailwindcss @tailwindcss/postcss postcss
+- npx expo customize metro.config.js
+
+https://www.nativewind.dev/v5/getting-started/installation
+
+### NOte: create files according nativewind docx.
+
+- If not styled works delete package-lock.json and npm install again and npx expo start --clear
+
+# Single line (Skip manual)
+
+- npx rn-new@next --nativewind
