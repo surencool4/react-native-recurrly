@@ -2,7 +2,7 @@ import { Tabs } from "expo-router";
 import {tabs} from "@/assets/constants/data";
 import {View} from "react-native";
 import clsx from "clsx";
-import {Image} from "expo-image";
+import {Image} from "react-native";
 import {useSafeAreaInsets}  from "react-native-safe-area-context";
 import {components, colors} from "@/assets/constants/theme";
 
