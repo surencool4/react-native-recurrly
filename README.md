@@ -85,3 +85,7 @@ https://www.nativewind.dev/v5/getting-started/installation
 # Single line (Skip manual)
 
 - npx rn-new@next --nativewind
+
+### Styles
+- npm i clsx
+- npm i react-native-safe-area-context
