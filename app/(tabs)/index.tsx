@@ -12,7 +12,7 @@ export default function App() {
         Welcome to OWC!
       </Text>
         <Link href="/onboarding" className="mt-4 rounded bg-primary text-white p-4">Go to Onboarding</Link>
-        <Link href="/app/subscriptions/spotify" className="mt-4 rounded bg-primary text-white p-4">Spotify</Link>
+        <Link href="/subscriptions/spotify" className="mt-4 rounded bg-primary text-white p-4">Spotify</Link>
         <Link href={{
             pathname: "/subscriptions/[id]",
             params:{id: "claude"}
