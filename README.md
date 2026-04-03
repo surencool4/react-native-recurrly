@@ -124,3 +124,18 @@ The new subscription should immediately appear in both the "All Subscriptions" F
 Use clsx for conditional class toggling (already installed). Use dayjs for date calculations (already installed). Match the visual style of the existing auth screens. Do NOT install any new packages.
 Make sure the newly created subscription also shows on the subscriptions screen.
 ```
+
+
+## Deploy (EAS) https://expo.dev
+- npm install -g eas-cli
+- eas login
+- eas whoami #Verify
+- eas build:configure
+- eas build --platform ios --profile production
+- eas build --platform android --profile production
+Or,
+- eas build --platform all --profile production
+
+**Note: before build make sure**
+- rm -rf node_modules package-lock.json
+- npm install
