@@ -16,6 +16,7 @@ declare global {
         id: string;
         icon: ImageSourcePropType;
         name: string;
+        frequency?: string;
         plan?: string;
         category?: string;
         paymentMethod?: string;

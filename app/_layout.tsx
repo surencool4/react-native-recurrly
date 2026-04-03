@@ -9,6 +9,7 @@ import { PostHogProvider } from "posthog-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { posthog } from "@/src/config/posthog";
+import { SubscriptionsProvider } from "@/src/context/subscriptions-context";
 import { colors } from "@/assets/constants/theme";
 
 SplashScreen.preventAutoHideAsync();
@@ -118,7 +119,9 @@ export default function RootLayout() {
     >
       <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
         <PostHogClerkSync />
-        <Slot />
+        <SubscriptionsProvider>
+          <Slot />
+        </SubscriptionsProvider>
       </ClerkProvider>
     </PostHogProvider>
   );

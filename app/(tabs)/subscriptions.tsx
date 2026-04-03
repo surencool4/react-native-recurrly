@@ -2,16 +2,17 @@ import React, { useState } from 'react'
 import {FlatList, Text, TextInput, View} from 'react-native'
 import {SafeAreaView as RNSafeAreaView} from 'react-native-safe-area-context';
 import { styled } from "nativewind";
-import {HOME_SUBSCRIPTIONS} from "@/assets/constants/data";
 import SubscriptionCard from "@/components/SubscriptionCard";
+import { useSubscriptions } from "@/src/context/subscriptions-context";
 const SafeAreaView = styled(RNSafeAreaView);
 
 const Subscriptions = () => {
     const [query, setQuery] = useState('');
     const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<string | null>(null);
+    const { subscriptions } = useSubscriptions();
 
     const normalizedQuery = query.trim().toLowerCase();
-    const filteredSubscriptions = HOME_SUBSCRIPTIONS.filter((subscription) => {
+    const filteredSubscriptions = subscriptions.filter((subscription) => {
         if (!normalizedQuery) {
             return true;
         }
