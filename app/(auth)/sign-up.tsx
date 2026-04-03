@@ -1,11 +1,5 @@
-import {View, Text} from 'react-native'
-import React from 'react'
+import { AuthView } from "@clerk/expo/native";
 
-const SignUp = () => {
-    return (
-        <View>
-            <Text>SignUp</Text>
-        </View>
-    )
+export default function SignUp() {
+  return <AuthView mode="signUp" />;
 }
-export default SignUp

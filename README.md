@@ -89,3 +89,6 @@ https://www.nativewind.dev/v5/getting-started/installation
 - npm i clsx
 - npm i react-native-safe-area-context
 - npm install dayjs
+
+## Open Simulator
+- open -a Simulator
