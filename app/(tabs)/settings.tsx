@@ -4,11 +4,18 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import {SafeAreaView as RNSafeAreaView} from 'react-native-safe-area-context';
 import { styled } from "nativewind";
 import { colors } from "@/assets/constants/theme";
+import { usePostHog } from "posthog-react-native";
 const SafeAreaView = styled(RNSafeAreaView);
 
 const Settings = () => {
     const { signOut } = useClerk();
     const { user } = useUser();
+    const posthog = usePostHog();
+
+    const handleSignOut = () => {
+        posthog.capture("user_signed_out");
+        signOut();
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -20,7 +27,7 @@ const Settings = () => {
                 </Text>
             </View>
 
-            <Pressable style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]} onPress={() => signOut()}>
+            <Pressable style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]} onPress={handleSignOut}>
                 <Text style={styles.buttonText}>Sign out</Text>
             </Pressable>
         </SafeAreaView>

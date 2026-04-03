@@ -92,3 +92,39 @@ https://www.nativewind.dev/v5/getting-started/installation
 
 ## Open Simulator
 - open -a Simulator
+
+## PostHug
+- npx -y @posthog/wizard@latest
+- npx expo install posthog-react-native expo-file-system expo-application expo-device expo-localization  ## Expo
+
+```
+import { PostHogProvider } from 'posthog-react-native'
+
+export function MyApp() {
+    return (
+        <PostHogProvider
+            apiKey="phc_HlHeP8oGIPml8zELh2GsUk3ZOPWEbYipycHiRJJqUpV"
+            options={{
+                host: "https://us.i.posthog.com",
+            }}
+        >
+            <RestOfApp />
+        </PostHogProvider>
+    )
+}```
+
+```
+import { usePostHog } from 'posthog-react-native'
+
+function MyComponent() {
+const posthog = usePostHog()
+
+    const handlePress = () => {
+        posthog.capture('button_pressed', {
+            button_name: 'signup'
+        })
+    }
+
+    return <Button onPress={handlePress} title="Sign Up" />
+}
+```

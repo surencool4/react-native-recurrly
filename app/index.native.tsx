@@ -2,6 +2,7 @@ import { useAuth, useClerk, useUser, useUserProfileModal } from "@clerk/expo";
 import { AuthView, UserButton } from "@clerk/expo/native";
 import { useRouter } from "expo-router";
 import React from "react";
+import { usePostHog } from "posthog-react-native";
 import {
   ActivityIndicator,
   Image,
@@ -20,6 +21,22 @@ export default function MainScreen() {
   const { signOut } = useClerk();
   const { presentUserProfile } = useUserProfileModal();
   const router = useRouter();
+  const posthog = usePostHog();
+
+  const handleOpenDashboard = () => {
+    posthog.capture("dashboard_opened");
+    router.push("/(tabs)");
+  };
+
+  const handleManageProfile = () => {
+    posthog.capture("manage_profile_pressed");
+    presentUserProfile();
+  };
+
+  const handleSignOut = () => {
+    posthog.capture("user_signed_out");
+    signOut();
+  };
 
   if (!isLoaded) {
     return (
@@ -57,15 +74,15 @@ export default function MainScreen() {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.primaryButton} onPress={() => router.push("/(tabs)")}>
+      <TouchableOpacity style={styles.primaryButton} onPress={handleOpenDashboard}>
         <Text style={styles.primaryButtonText}>Open Dashboard</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.secondaryButton} onPress={presentUserProfile}>
+      <TouchableOpacity style={styles.secondaryButton} onPress={handleManageProfile}>
         <Text style={styles.secondaryButtonText}>Manage Profile</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.tertiaryButton} onPress={() => signOut()}>
+      <TouchableOpacity style={styles.tertiaryButton} onPress={handleSignOut}>
         <Text style={styles.tertiaryButtonText}>Sign Out</Text>
       </TouchableOpacity>
     </SafeAreaView>
