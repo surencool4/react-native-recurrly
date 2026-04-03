@@ -96,3 +96,8 @@ https://www.nativewind.dev/v5/getting-started/installation
 ## PostHug
 - npx -y @posthog/wizard@latest
 - npx expo install posthog-react-native expo-file-system expo-application expo-device expo-localization  ## Expo
+
+## Subscription Page Prompt
+```
+Implement a searchable subscriptions list using the existing subscription card component and the dummy data from constants. on the subscription screen.
+```
