@@ -709,6 +709,7 @@ React Native
 PostHog AI
 
 ```jsx
+import { View } from 'react-native'
 import { useFeatureFlag } from 'posthog-react-native'
 const MyComponent = () => {
     const multiVariantFeature = useFeatureFlag('key-for-your-multivariate-flag')
@@ -719,7 +720,7 @@ const MyComponent = () => {
       // Do something
     }
     // Optional use the 'useFeatureFlagWithPayload' hook for fetching the feature flag payload
-    return <div/>
+    return <View />
 }
 ```
 
@@ -1103,12 +1104,13 @@ PostHog AI
 
 ```jsx
 <PostHogProvider
-    debug: {true}
     apiKey="<ph_project_token>"
     options={{
+        debug: true,
         host: "https://us.i.posthog.com",
     }}
 >
+</PostHogProvider>
 ```
 
 You can also call the `debug()` method in your code.
@@ -1183,7 +1185,7 @@ await PostHog.setup('<ph_project_token>', {
 PostHog.capture("foo")
 // V2 Setup difference
 import PostHog from 'posthog-react-native'
-const posthog = await Posthog.initAsync('<ph_project_token>', {
+const posthog = await PostHog.initAsync('<ph_project_token>', {
     // usually 'https://us.i.posthog.com' or 'https://eu.i.posthog.com'
     host: 'https://us.i.posthog.com',
     // Add any other options here.

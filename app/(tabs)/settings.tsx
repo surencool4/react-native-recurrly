@@ -12,9 +12,10 @@ const Settings = () => {
     const { user } = useUser();
     const posthog = usePostHog();
 
-    const handleSignOut = () => {
+    const handleSignOut = async () => {
         posthog.capture("user_signed_out");
-        signOut();
+        await posthog.flush();
+        await signOut();
     };
 
     return (

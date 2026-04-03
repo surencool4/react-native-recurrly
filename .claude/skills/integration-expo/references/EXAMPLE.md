@@ -1176,12 +1176,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   const incrementBurritoConsiderations = async () => {
-    if (user) {
-      const updatedUser: User = {
-        ...user,
-        burritoConsiderations: user.burritoConsiderations + 1,
+    let updatedUser: User | null = null
+
+    setUser((prev) => {
+      if (!prev) {
+        return prev
       }
-      setUser(updatedUser)
+
+      updatedUser = {
+        ...prev,
+        burritoConsiderations: prev.burritoConsiderations + 1,
+      }
+
+      return updatedUser
+    })
+
+    if (updatedUser) {
       await storage.saveUser(updatedUser)
     }
   }
@@ -1425,4 +1435,3 @@ export const shadows = {
 ```
 
 ---
-
