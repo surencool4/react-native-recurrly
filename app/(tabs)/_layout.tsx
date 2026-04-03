@@ -8,19 +8,24 @@ import { components, colors } from "@/assets/constants/theme";
 
 const tabBar = components.tabBar;
 
+type TabIconProps = {
+  focused: boolean;
+  icon: unknown;
+};
+
+const TabIcon = ({ focused, icon }: TabIconProps) => {
+  return (
+    <View className="tabs-icon">
+      <View className={clsx("tabs-pill", focused && "tabs-active")}>
+        <Image source={icon} resizeMode="contain" className="tabs-glyph" />
+      </View>
+    </View>
+  );
+};
+
 const TabLayout = () => {
   const { isLoaded, isSignedIn } = useAuth({ treatPendingAsSignedOut: false });
   const insets = useSafeAreaInsets();
-
-  const TabIcon = ({ focused, icon }: TabIconProps) => {
-    return (
-      <View className="tabs-icon">
-        <View className={clsx("tabs-pill", focused && "tabs-active")}>
-          <Image source={icon} resizeMode="contain" className="tabs-glyph" />
-        </View>
-      </View>
-    );
-  };
 
   if (!isLoaded) {
     return null;

@@ -1,5 +1,5 @@
-import { Redirect } from "expo-router";
+import { AuthView } from "@clerk/expo/native";
 
 export default function SignIn() {
-  return <Redirect href="/" />;
+  return <AuthView mode="signIn" />;
 }
