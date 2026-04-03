@@ -1,10 +1,10 @@
 import "@/global.css";
+import { useUser } from "@clerk/expo";
 import {FlatList, Image, Text, View} from "react-native";
-import { Link } from "expo-router";
 import {SafeAreaView as RNSafeAreaView} from 'react-native-safe-area-context';
 import { styled } from "nativewind";
 import images from "@/assets/constants/images";
-import {HOME_BALANCE, HOME_SUBSCRIPTIONS, HOME_USER, UPCOMING_SUBSCRIPTIONS} from "@/assets/constants/data";
+import {HOME_BALANCE, HOME_SUBSCRIPTIONS, UPCOMING_SUBSCRIPTIONS} from "@/assets/constants/data";
 import {icons} from "@/assets/constants/icons";
 import {formatCurrency} from "@/lib/utils";
 import dayjs from "dayjs";
@@ -16,6 +16,17 @@ const SafeAreaView = styled(RNSafeAreaView);
 
 export default function App() {
     const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<string | null>(null);
+    const { user } = useUser();
+
+    const displayName =
+        user?.fullName ||
+        user?.firstName ||
+        user?.primaryEmailAddress?.emailAddress ||
+        "Subscriber";
+
+    const secondaryIdentity =
+        user?.primaryEmailAddress?.emailAddress ||
+        `User ID: ${user?.id ?? "Unavailable"}`;
   return (
     <SafeAreaView className="flex-1 bg-background p-5">
 
@@ -27,7 +38,10 @@ export default function App() {
                         <View className="home-header">
                             <View className="home-user">
                                 <Image source={images.avatar} className="home-avatar" />
-                                <Text className="home-user-name">{HOME_USER.name}</Text>
+                                <View>
+                                    <Text className="home-user-name">{displayName}</Text>
+                                    <Text className="text-xs text-foreground/60">{secondaryIdentity}</Text>
+                                </View>
                             </View>
 
                             <Image source={icons.add} className="home-add-icon" />
